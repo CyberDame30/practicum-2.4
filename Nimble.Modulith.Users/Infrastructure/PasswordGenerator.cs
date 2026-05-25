@@ -1,0 +1,1 @@
+namespace Nimble.Modulith.Users.Infrastructure; public static class PasswordGenerator { public static string GeneratePassword()=>Guid.NewGuid().ToString("N")[..12]; }

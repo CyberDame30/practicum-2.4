@@ -1,0 +1,49 @@
+@Nimble.Modulith.Web_HostAddress = http://localhost:5002
+
+### Register
+POST {{Nimble.Modulith.Web_HostAddress}}/register
+Content-Type: application/json
+{"email":"user1@example.com","password":"user123"}
+
+### Login
+POST {{Nimble.Modulith.Web_HostAddress}}/login
+Content-Type: application/json
+{"email":"admin@nimble.local","password":"admin123"}
+
+### List Products
+GET {{Nimble.Modulith.Web_HostAddress}}/products
+
+### Create Product (Admin)
+POST {{Nimble.Modulith.Web_HostAddress}}/products
+Content-Type: application/json
+{"name":"Keyboard","description":"Mechanical keyboard","price":79.99}
+
+### Create Customer
+POST {{Nimble.Modulith.Web_HostAddress}}/customers
+Content-Type: application/json
+{"firstName":"Elisabeth","lastName":"Rothar","email":"user1@example.com","phoneNumber":"+380000000000","street":"Main 1","city":"Kyiv","state":"Kyiv","postalCode":"01001","country":"Ukraine"}
+
+### Create Order (price comes from Products module)
+POST {{Nimble.Modulith.Web_HostAddress}}/orders
+Content-Type: application/json
+{"customerId":1,"orderDate":"2025-10-24","items":[{"productId":1,"quantity":2},{"productId":2,"quantity":1}]}
+
+### Confirm Order -> OrderCreatedEvent -> Reporting + Email
+POST {{Nimble.Modulith.Web_HostAddress}}/orders/1/confirm
+
+### Reset Password
+POST {{Nimble.Modulith.Web_HostAddress}}/users/reset-password
+Content-Type: application/json
+{"email":"user1@example.com"}
+
+### Orders Report JSON
+GET {{Nimble.Modulith.Web_HostAddress}}/reports/orders?startDate=2025-01-01&endDate=2025-12-31
+
+### Orders Report CSV
+GET {{Nimble.Modulith.Web_HostAddress}}/reports/orders?startDate=2025-01-01&endDate=2025-12-31&format=csv
+
+### Product Sales Report
+GET {{Nimble.Modulith.Web_HostAddress}}/reports/product-sales?startDate=2025-01-01&endDate=2025-12-31
+
+### Customer Orders Report
+GET {{Nimble.Modulith.Web_HostAddress}}/reports/customers/1/orders

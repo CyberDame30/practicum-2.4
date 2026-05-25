@@ -1,0 +1,14 @@
+<Solution>
+  <Project Path="Nimble.Modulith.AppHost/Nimble.Modulith.AppHost.csproj" />
+  <Project Path="Nimble.Modulith.Customers.Contracts/Nimble.Modulith.Customers.Contracts.csproj" />
+  <Project Path="Nimble.Modulith.Customers/Nimble.Modulith.Customers.csproj" />
+  <Project Path="Nimble.Modulith.Email.Contracts/Nimble.Modulith.Email.Contracts.csproj" />
+  <Project Path="Nimble.Modulith.Email/Nimble.Modulith.Email.csproj" />
+  <Project Path="Nimble.Modulith.Products.Contracts/Nimble.Modulith.Products.Contracts.csproj" />
+  <Project Path="Nimble.Modulith.Products/Nimble.Modulith.Products.csproj" />
+  <Project Path="Nimble.Modulith.Reporting/Nimble.Modulith.Reporting.csproj" />
+  <Project Path="Nimble.Modulith.ServiceDefaults/Nimble.Modulith.ServiceDefaults.csproj" />
+  <Project Path="Nimble.Modulith.Users.Contracts/Nimble.Modulith.Users.Contracts.csproj" />
+  <Project Path="Nimble.Modulith.Users/Nimble.Modulith.Users.csproj" />
+  <Project Path="Nimble.Modulith.Web/Nimble.Modulith.Web.csproj" />
+</Solution>

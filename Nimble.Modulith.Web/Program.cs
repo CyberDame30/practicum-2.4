@@ -1,0 +1,14 @@
+using FastEndpoints; using FastEndpoints.Security; using FastEndpoints.Swagger; using Mediator; using Nimble.Modulith.Customers; using Nimble.Modulith.Email; using Nimble.Modulith.Products; using Nimble.Modulith.Reporting; using Nimble.Modulith.ServiceDefaults; using Nimble.Modulith.Users; using Nimble.Modulith.Web; using Serilog;
+var logger = Log.Logger = new LoggerConfiguration().Enrich.FromLogContext().WriteTo.Console().CreateLogger();
+logger.Information("Starting web host");
+var builder = WebApplication.CreateBuilder(args);
+builder.Host.UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Configuration).WriteTo.Console());
+builder.AddServiceDefaults();
+builder.AddUsersModuleServices(logger); builder.AddProductsModuleServices(logger); builder.AddCustomersModuleServices(logger); builder.AddReportingModuleServices(logger); builder.AddEmailModuleServices(logger);
+builder.Services.AddFastEndpoints().AddAuthenticationJwtBearer(s => s.SigningKey = builder.Configuration["Auth:JwtSecret"] ?? "really really REALLY long secret key goes here for development only").AddAuthorization().SwaggerDocument();
+builder.Services.AddMediator(options => { options.ServiceLifetime = ServiceLifetime.Scoped; options.PipelineBehaviors = [typeof(LoggingBehavior<,>)]; });
+var app = builder.Build();
+app.MapDefaultEndpoints();
+app.UseAuthentication(); app.UseAuthorization(); app.UseFastEndpoints().UseSwaggerGen();
+await app.EnsureUsersModuleDatabaseAsync(); await app.EnsureProductsModuleDatabaseAsync(); await app.EnsureCustomersModuleDatabaseAsync(); await app.EnsureReportingModuleDatabaseAsync();
+app.Run();
